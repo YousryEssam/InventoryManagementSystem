@@ -1,3 +1,6 @@
+using InventoryManagementSystem.Repositories.Implementations;
+using Microsoft.Data.SqlClient;
+
 namespace InventoryManagementSystem
 {
     public class Program
@@ -24,6 +27,16 @@ namespace InventoryManagementSystem
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            /*********************** Interfaces injection ***********************/
+            builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+            builder.Services.AddScoped<IInventoryTransactionRepository, InventoryTransactionRepository>();
+            builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IWarehouseProductRepository, WarehouseProductRepository>();
+            builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
+
+
 
             var app = builder.Build();
 
