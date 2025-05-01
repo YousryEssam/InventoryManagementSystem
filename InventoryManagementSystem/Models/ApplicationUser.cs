@@ -18,8 +18,6 @@
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
         // Navigation properties
-
         public virtual ICollection<InventoryTransaction> Transactions { get; set; }
-
     }
 }
