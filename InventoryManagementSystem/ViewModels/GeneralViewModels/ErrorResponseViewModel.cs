@@ -1,6 +1,6 @@
 ﻿namespace InventoryManagementSystem.ViewModels.GeneralViewModels
 {
-    public class ErrorResponseViewModel : ResponseViewModel<bool>
+    public class ErrorResponseViewModel<T> : ResponseViewModel<T>
     {
 
     }

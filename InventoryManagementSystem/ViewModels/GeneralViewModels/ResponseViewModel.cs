@@ -1,16 +1,15 @@
 ﻿namespace InventoryManagementSystem.ViewModels.GeneralViewModels
 {
-    public class ResponseViewModel <T>
+    public class ResponseViewModel<T>
     {
         public T? Data { get; set; }
         public bool IsSuccess { get; set; }
         public string? Message { get; set; }
         public ErrorCode ErrorCode { get; set; } = ErrorCode.NoError;
 
-
-        public static ResponseViewModel<T> Success(T? data , string message = "")
+        public static ResponseViewModel<T> SuccessfulResponse(T? data, string message = "")
         {
-            return new SuccessResponseViewModel<T>
+            return new ResponseViewModel<T>
             {
                 Data = data,
                 IsSuccess = true,
@@ -19,9 +18,9 @@
             };
         }
 
-        public static ErrorResponseViewModel Error(ErrorCode errorCode, string message = "")
+        public static ResponseViewModel<T> UnsuccessfulResponse(ErrorCode errorCode, string message = "")
         {
-            return new ErrorResponseViewModel
+            return new ResponseViewModel<T>
             {
                 Data = default,
                 IsSuccess = false,
@@ -29,6 +28,5 @@
                 ErrorCode = errorCode,
             };
         }
-
     }
 }
