@@ -1,5 +1,7 @@
-using InventoryManagementSystem.Repositories.Implementations;
-using Microsoft.Data.SqlClient;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace InventoryManagementSystem
 {
@@ -22,6 +24,35 @@ namespace InventoryManagementSystem
             builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>()
                 .AddEntityFrameworkStores<InventoryManagementDbContext>()
                 .AddDefaultTokenProviders();
+
+            /*********************** Add Authentication & JWT Bearer ***********************/
+
+            string defaultKey = "xP5QyBL0T3yaUjvbf5BfM3znTT9gKpALDF6rD6+q9BQ=";
+            
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme =
+                    JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme =
+                    JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme =
+                    JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+
+                string keyString = builder.Configuration["JWT:Key"] ?? defaultKey;
+                byte[]? keyBytes = Convert.FromBase64String(keyString);
+                options.TokenValidationParameters = new()
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = builder.Configuration["JWT:Issuer"],
+                    ValidateAudience = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(keyBytes)
+                };
+            });
+            /*******************************************************************************/
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

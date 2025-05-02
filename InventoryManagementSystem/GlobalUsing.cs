@@ -8,3 +8,5 @@ global using System.ComponentModel.DataAnnotations.Schema;
 global using InventoryManagementSystem.GenericRepositories;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using InventoryManagementSystem.Repositories.Interfaces;
+global using InventoryManagementSystem.Repositories.Implementations;
+
