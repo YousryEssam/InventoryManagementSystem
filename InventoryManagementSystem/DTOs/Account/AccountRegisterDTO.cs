@@ -12,13 +12,17 @@
         public string LastName { get; set; }
 
 
+        [Required]
         [EmailAddress(ErrorMessage = "Invalid email address!.")]
         public string Email { get; set; }
 
 
+        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+
+        [Required]
         [Compare("Password")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
