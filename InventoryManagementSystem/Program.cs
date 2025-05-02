@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.OpenApi.Models;
 
 namespace InventoryManagementSystem
 {
@@ -15,6 +16,46 @@ namespace InventoryManagementSystem
 
             builder.Services.AddControllers();
 
+            /*********************** Swagger / OpenAPI ***********************/
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen(swagger =>
+            {
+                //This is to generate the Default UI of Swagger Documentation    
+                swagger.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "V1",
+                    Title = "ASP.NET 8 Web API",
+                    Description = "Inventory Management System Task"
+                });
+                // To Enable authorization using Swagger (JWT)    
+                swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter 'Bearer' [space] and then your valid token in the text input below.\r\n\r\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"",
+                });
+                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+            });
+            /*************************************************************************/
+
+
             /*********************** Database & User Identity ***********************/
             builder.Services.AddDbContext<InventoryManagementDbContext>(options =>
             {
@@ -24,6 +65,7 @@ namespace InventoryManagementSystem
             builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>()
                 .AddEntityFrameworkStores<InventoryManagementDbContext>()
                 .AddDefaultTokenProviders();
+            /********************************************************************************/
 
             /*********************** Add Authentication & JWT Bearer ***********************/
 
@@ -55,9 +97,6 @@ namespace InventoryManagementSystem
             /*******************************************************************************/
 
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
 
             /*********************** Interfaces injection ***********************/
             builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
