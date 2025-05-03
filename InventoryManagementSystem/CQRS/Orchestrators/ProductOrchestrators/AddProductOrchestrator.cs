@@ -65,10 +65,12 @@
                     DestinationWarehouseId = request.NewProductDTO.WarehouseId,
                     TransactionDate = DateTime.Now,
                 };
+
                 var step4 = await _mediator.Send(new AddInventoryTransactionCommand()
                 {
                     transactionDTO = TransactionDTO,
                 });
+
                 if (step1 && step3 && step4)
                 {
                     transaction.Commit();
@@ -77,9 +79,12 @@
                 transaction.Rollback();
                 return false;
             }
-            catch (Exception ex)
+            catch
             {
-                transaction.Rollback();
+                if (transaction != null)
+                {
+                    await transaction.RollbackAsync();
+                }
                 return false;
             }
         }
