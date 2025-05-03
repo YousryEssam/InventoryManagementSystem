@@ -14,7 +14,7 @@ namespace InventoryManagementSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : BaseAPIController
     {
         private readonly IConfiguration _configuration;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -141,14 +141,6 @@ namespace InventoryManagementSystem.Controllers
         }
 
         /*********************** Helper Methods ***********************/
-        private async Task<ResponseViewModel<T>> UnsuccessfulRequest<T>(ErrorCode errorCode, string msg)
-        {
-            return await Task.FromResult(ResponseViewModel<T>.UnsuccessfulResponse(errorCode, msg));
-        }
-        private async Task<ResponseViewModel<T>> SuccessfulRequest<T> (T date , string msg = "")
-        {
-            return await Task.FromResult(ResponseViewModel<T>.SuccessfulResponse(date, msg));
-        }
         private async Task CreateRolesIfNotExist()
         {
             string[] systemRoles = { "Admin", "User" };

@@ -6,13 +6,9 @@ namespace InventoryManagementSystem.Controllers
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    public class WarehouseController : ControllerBase
+    public class WarehouseController : BaseAPIController
     {
-        private IMediator _mediator;
-        public WarehouseController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        public WarehouseController(IMediator mediator) : base(mediator) { }
 
         [HttpGet("id:{int}")]
         public async Task<ResponseViewModel<WarehouseViewModel>> GetById(int id)
@@ -76,17 +72,6 @@ namespace InventoryManagementSystem.Controllers
             }
 
             return await SuccessfulRequest(true, "Deleted successfully");
-        }
-
-
-        /*********************** Helper Methods ***********************/
-        private async Task<ResponseViewModel<T>> UnsuccessfulRequest<T>(ErrorCode errorCode, string msg)
-        {
-            return await Task.FromResult(ResponseViewModel<T>.UnsuccessfulResponse(errorCode, msg));
-        }
-        private async Task<ResponseViewModel<T>> SuccessfulRequest<T>(T date, string msg = "")
-        {
-            return await Task.FromResult(ResponseViewModel<T>.SuccessfulResponse(date, msg));
         }
     }
 }

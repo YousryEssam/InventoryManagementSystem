@@ -1,13 +1,14 @@
 ﻿global using MediatR;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
+global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 global using InventoryManagementSystem.Enums;
 global using InventoryManagementSystem.Models;
 global using InventoryManagementSystem.DataSource;
-global using System.ComponentModel.DataAnnotations;
-global using System.ComponentModel.DataAnnotations.Schema;
 global using InventoryManagementSystem.GenericRepositories;
-global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using InventoryManagementSystem.Repositories.Interfaces;
 global using InventoryManagementSystem.Repositories.Implementations;
 global using InventoryManagementSystem.ViewModels.GeneralViewModels;
@@ -15,3 +16,5 @@ global using InventoryManagementSystem.ViewModels.WarehouseViewModels;
 global using InventoryManagementSystem.DTOs.WarehouseDTOs;
 global using InventoryManagementSystem.CQRS.Queries.WarehouseQueries;
 global using InventoryManagementSystem.CQRS.Commands.WarehouseCommands;
+global using InventoryManagementSystem.ViewModels.ProductViewModels;
+global using InventoryManagementSystem.CQRS.Queries.ProductQueries;

@@ -2,6 +2,6 @@
 {
     public interface IProductRepository : IGenericRepository<Product>
     {
-
+        Task<bool> SoftDeleteByIdAsync(int id);
     }
 }
