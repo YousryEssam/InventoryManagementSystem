@@ -1,8 +1,6 @@
-using System.Text;
+using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.OpenApi.Models;
 
 namespace InventoryManagementSystem
 {
@@ -70,7 +68,7 @@ namespace InventoryManagementSystem
             /*********************** Add Authentication & JWT Bearer ***********************/
 
             string defaultKey = "xP5QyBL0T3yaUjvbf5BfM3znTT9gKpALDF6rD6+q9BQ=";
-            
+
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme =
@@ -98,16 +96,23 @@ namespace InventoryManagementSystem
 
 
 
-            /*********************** Interfaces injection ***********************/
+            /**************************** Interfaces injection *****************************/
             builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             builder.Services.AddScoped<IInventoryTransactionRepository, InventoryTransactionRepository>();
             builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IWarehouseProductRepository, WarehouseProductRepository>();
             builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
+            /*******************************************************************************/
 
+            /**************************** Add MediatR *****************************/
 
+            builder.Services.AddMediatR(options =>
+            {
+                options.RegisterServicesFromAssemblies(typeof(Program).Assembly);
+            });
 
+            /**************************** Application Build *****************************/
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -117,10 +122,12 @@ namespace InventoryManagementSystem
                 app.UseSwaggerUI();
             }
 
+
             app.UseAuthorization();
 
 
             app.MapControllers();
+
 
             app.Run();
         }
