@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace InventoryManagementSystem.Controllers
+﻿namespace InventoryManagementSystem.Controllers
 {
     [ApiController]
     public class BaseAPIController : ControllerBase

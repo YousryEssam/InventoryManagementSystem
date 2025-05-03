@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace InventoryManagementSystem.Controllers
+﻿namespace InventoryManagementSystem.Controllers
 {
     [Authorize]
     [ApiController]

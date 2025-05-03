@@ -1,11 +1,4 @@
-﻿using InventoryManagementSystem.DTOs.Account;
-using InventoryManagementSystem.ViewModels.AccountViewModels;
-using InventoryManagementSystem.ViewModels.GeneralViewModels;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -20,7 +13,7 @@ namespace InventoryManagementSystem.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole<int>> _roleManager;
 
-        public AccountController(IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<int>> roleManager)
+        public AccountController(IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<int>> roleManager , IMediator mediator) :base(mediator)
         {
             _userManager = userManager;
             _roleManager = roleManager;
