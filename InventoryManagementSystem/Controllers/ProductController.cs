@@ -27,6 +27,14 @@
         }
 
         //[HttpPost("Add")]
+        //public async Task<ResponseViewModel<bool>> AddNew(NewProductDTO newProduct)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return await UnsuccessfulRequest<bool>(ErrorCode.ValidationError, "Validation Error");
+        //    }
+
+        //}
 
         //[HttpPut("{id:int}")]
 

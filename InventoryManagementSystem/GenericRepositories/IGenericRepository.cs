@@ -4,10 +4,10 @@
     {
         Task AddAsync(TModel entity);
         void Delete(TModel entity);
-        Task DeleteByIdAsync(int id);
+        Task<bool> DeleteById(int id);
         Task<IEnumerable<TModel>> GetAllAsync();
         Task<TModel?> GetByIdAsync(int id);
         Task SaveChangesAsync();
-        void UpdateAsync(TModel entity);
+        void Update(TModel entity);
     }
 }

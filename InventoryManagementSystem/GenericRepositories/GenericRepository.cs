@@ -20,13 +20,15 @@
             _dbSet.Remove(entity);
         }
 
-        public async Task DeleteByIdAsync(int id)
+        public async Task<bool> DeleteById(int id)
         {
             var entity = await GetByIdAsync(id);
             if (entity != null)
             {
                 _dbSet.Remove(entity);
+                return true;
             }
+            return false;
         }
 
         public async Task<IEnumerable<TModel>> GetAllAsync()
@@ -39,7 +41,7 @@
             return await _dbSet.FindAsync(id);
         }
 
-        public void UpdateAsync(TModel entity)
+        public void Update(TModel entity)
         {
             _dbSet.Update(entity);
         }
