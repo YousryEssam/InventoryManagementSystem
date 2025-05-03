@@ -1,7 +1,4 @@
-﻿
-
-
-namespace InventoryManagementSystem.Enums
+﻿namespace InventoryManagementSystem.Enums
 {
     public enum ErrorCode
     {
@@ -10,5 +7,6 @@ namespace InventoryManagementSystem.Enums
         UnExceptedError = 2,
         EmailAlreadyExists = 3,
         InvalidData = 4,
+        InvalidID = 5,
     }
 }

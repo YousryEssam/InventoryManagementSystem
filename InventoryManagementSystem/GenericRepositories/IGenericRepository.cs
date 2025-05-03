@@ -7,6 +7,7 @@
         Task DeleteByIdAsync(int id);
         Task<IEnumerable<TModel>> GetAllAsync();
         Task<TModel?> GetByIdAsync(int id);
+        Task SaveChangesAsync();
         void UpdateAsync(TModel entity);
     }
 }

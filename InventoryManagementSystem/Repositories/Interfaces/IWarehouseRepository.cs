@@ -2,6 +2,6 @@
 {
     public interface IWarehouseRepository : IGenericRepository<Warehouse>
     {
-
+        Task<bool> SoftDeleteByIdAsync(int id);
     }
 }

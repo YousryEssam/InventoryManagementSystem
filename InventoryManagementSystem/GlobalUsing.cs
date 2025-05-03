@@ -1,4 +1,5 @@
-﻿global using Microsoft.AspNetCore.Identity;
+﻿global using MediatR;
+global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
 global using InventoryManagementSystem.Enums;
 global using InventoryManagementSystem.Models;
@@ -9,4 +10,8 @@ global using InventoryManagementSystem.GenericRepositories;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using InventoryManagementSystem.Repositories.Interfaces;
 global using InventoryManagementSystem.Repositories.Implementations;
-
+global using InventoryManagementSystem.ViewModels.GeneralViewModels;
+global using InventoryManagementSystem.ViewModels.WarehouseViewModels;
+global using InventoryManagementSystem.DTOs.WarehouseDTOs;
+global using InventoryManagementSystem.CQRS.Queries.WarehouseQueries;
+global using InventoryManagementSystem.CQRS.Commands.WarehouseCommands;
