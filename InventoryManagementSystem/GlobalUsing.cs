@@ -18,6 +18,8 @@ global using InventoryManagementSystem.DTOs.Account;
 global using InventoryManagementSystem.DTOs.ProductDTOs;
 global using InventoryManagementSystem.DTOs.WarehouseDTOs;
 global using InventoryManagementSystem.DTOs.WarehouseProduct;
+global using InventoryManagementSystem.DTOs.InventoryTransactionDTOs;
+
 
 global using InventoryManagementSystem.Repositories.Interfaces;
 global using InventoryManagementSystem.Repositories.Implementations;
@@ -28,8 +30,9 @@ global using InventoryManagementSystem.CQRS.Queries.WarehouseQueries;
 global using InventoryManagementSystem.CQRS.Commands.WarehouseCommands;
 global using InventoryManagementSystem.CQRS.Queries.WarehouseProductQueries;
 global using InventoryManagementSystem.CQRS.Commands.WarehouseProductCommands;
-global using InventoryManagementSystem.CQRS.Queries.InventoryTransactionQueries;
 global using InventoryManagementSystem.CQRS.Orchestrators.ProductOrchestrators;
+global using InventoryManagementSystem.CQRS.Queries.InventoryTransactionQueries;
+global using InventoryManagementSystem.CQRS.Commands.InventoryTransactionCommands;
 
 
 

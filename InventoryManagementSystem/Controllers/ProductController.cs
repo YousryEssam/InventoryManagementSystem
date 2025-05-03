@@ -5,7 +5,12 @@
     [Route("api/[controller]")]
     public class ProductController : BaseAPIController
     {
-        public ProductController(IMediator mediator) : base(mediator) { }
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public ProductController(IMediator mediator, UserManager<ApplicationUser> userManager) : base(mediator)
+        {
+            _userManager = userManager;
+        }
 
         [HttpGet("id:{int}")]
         public async Task<ResponseViewModel<ProductViewModel>> GetById(int id)
@@ -34,13 +39,17 @@
                 return await UnsuccessfulRequest<bool>(ErrorCode.ValidationError, "Validation Error");
             }
 
-            bool successfulAdd = await _mediator.Send(new AddProductOrchestrator() { NewProductDTO = newProduct });
+            var user = await _userManager.GetUserAsync(User);
+            int userId = user.Id;
+
+
+            bool successfulAdd = await _mediator.Send(new AddProductOrchestrator() { NewProductDTO = newProduct ,UserId = userId });
 
             if (!successfulAdd)
             {
-                return await UnsuccessfulRequest<bool>(ErrorCode.UnExceptedError, "Unsuccessful create new warehouse.");
+                return await UnsuccessfulRequest<bool>(ErrorCode.UnExceptedError, "Unsuccessful create new Product.");
             }
-            return await SuccessfulRequest(true, "Successful create new warehouse.");
+            return await SuccessfulRequest(true, "Successful create new Product.");
         }
 
         [HttpPut("{id:int}")]
