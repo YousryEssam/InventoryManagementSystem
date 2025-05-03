@@ -59,6 +59,7 @@
 
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<ResponseViewModel<bool>> Delete(int id)
         {

@@ -3,5 +3,6 @@
     public interface IProductRepository : IGenericRepository<Product>
     {
         Task<bool> SoftDeleteByIdAsync(int id);
+        Task<IEnumerable<Product>> GetAllLowStockThresholdAsync();
     }
 }

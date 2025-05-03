@@ -1,9 +1,9 @@
 ﻿namespace InventoryManagementSystem.Controllers
 {
     [ApiController]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
-    public class ReportController: BaseAPIController
+    public class ReportController : BaseAPIController
     {
         public ReportController(IMediator mediator) : base(mediator) { }
 
@@ -25,8 +25,23 @@
         [HttpGet("All/ByDateRange")]
         public async Task<ResponseViewModel<IEnumerable<InventoryTransactionViewModel>>> GetByDateRange(DateTime startDate, DateTime endDate)
         {
-            var response = await _mediator.Send(new GetAllInventoryTransactionsQuery());
+            var response = await _mediator.Send(new GetAllInventoryTransactionsInDateRangeQuery() { Start = startDate, End = endDate });
             return await SuccessfulRequest(response, "Successful Request");
         }
+
+        [HttpGet("All/ByProduct/{id:int}")]
+        public async Task<ResponseViewModel<IEnumerable<InventoryTransactionViewModel>>> GetAllByProductId(int id)
+        {
+            var response = await _mediator.Send(new GetAllInventoryTransactionsByProductIdQuery() { Id = id });
+            return await SuccessfulRequest(response, "Successful Request");
+        } 
+        
+        [HttpGet("LowStockThreshold")]
+        public async Task<ResponseViewModel<IEnumerable<ProductViewModel>>> GetAllByLowStockThreshold()
+        {
+            var response = await _mediator.Send(new GetAllLowStockThresholdProductsQuery());
+            return await SuccessfulRequest(response, "Successful Request");
+        }
+
     }
 }

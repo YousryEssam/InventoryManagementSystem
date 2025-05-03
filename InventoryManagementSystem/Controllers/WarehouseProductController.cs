@@ -66,6 +66,7 @@
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ResponseViewModel<bool>> Delete(int id)
         {
             bool isDeletedSuccessfully = await _mediator.Send(new DeleteWarehouseProductCommand() { Id = id });

@@ -16,6 +16,16 @@
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<InventoryTransaction>> GetAllTransactionByProductId(int id)
+        {
+            return await _context.InventoryTransactions
+                .Include(it => it.User)
+                .Include(it => it.Product)
+                .Where(it => it.ProductId == id)
+                .OrderByDescending(it => it.TransactionDate)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<InventoryTransaction>> GetAllTransactionByType(TransactionType type)
         {
             return await _context.InventoryTransactions
