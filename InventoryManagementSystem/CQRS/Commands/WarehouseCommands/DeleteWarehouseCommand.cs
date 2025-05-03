@@ -6,17 +6,17 @@
     }
     public class DeleteWarehouseCommandHandler : IRequestHandler<DeleteWarehouseCommand, bool>
     {
-        private IWarehouseRepository _warehouseRepository;
+        private IWarehouseRepository _repository;
         public DeleteWarehouseCommandHandler(IWarehouseRepository warehouseRepository)
         {
-            _warehouseRepository = warehouseRepository;
+            _repository = warehouseRepository;
         }
         public async Task<bool> Handle(DeleteWarehouseCommand request, CancellationToken cancellationToken)
         {
-            var isDeleted = await _warehouseRepository.SoftDeleteByIdAsync(request.Id);
+            var isDeleted = await _repository.SoftDeleteByIdAsync(request.Id);
             if (isDeleted)
             {
-                await _warehouseRepository.SaveChangesAsync();
+                await _repository.SaveChangesAsync();
             }
             return isDeleted;
         }

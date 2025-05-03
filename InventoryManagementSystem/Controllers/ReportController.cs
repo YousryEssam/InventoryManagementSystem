@@ -1,7 +1,4 @@
-﻿using InventoryManagementSystem.CQRS.Queries.InventoryTransactionQueries;
-using Microsoft.EntityFrameworkCore;
-
-namespace InventoryManagementSystem.Controllers
+﻿namespace InventoryManagementSystem.Controllers
 {
     [ApiController]
     [Authorize(Roles ="Admin")]

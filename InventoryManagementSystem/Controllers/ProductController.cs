@@ -36,9 +36,36 @@
 
         //}
 
-        //[HttpPut("{id:int}")]
+        [HttpPut("{id:int}")]
+        public async Task<ResponseViewModel<bool>> Update(int id, UpdateProductDTO productDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return await UnsuccessfulRequest<bool>(ErrorCode.ValidationError, "Validation Error");
+            }
 
-        //[HttpDelete("{id:int}")]
+            bool successfulUpdated = await _mediator.Send(new UpdateProductCommand() { Id = id, updateProductDTO = productDTO });
+            if (!successfulUpdated)
+            {
+                return await UnsuccessfulRequest<bool>(ErrorCode.UnExceptedError, "Unsuccessful Update product.");
+            }
+
+            return await SuccessfulRequest(true, "Successful Update product.");
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{id:int}")]
+        public async Task<ResponseViewModel<bool>> Delete(int id)
+        {
+            bool isDeletedSuccessfully = await _mediator.Send(new DeleteProductCommand() { Id = id });
+            
+            if (!isDeletedSuccessfully)
+            {
+                return await UnsuccessfulRequest<bool>(ErrorCode.InvalidID, "Invalid ID.");
+            }
+
+            return await SuccessfulRequest(true, "Deleted successfully");
+        }
 
     }
 }
