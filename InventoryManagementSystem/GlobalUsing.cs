@@ -32,4 +32,6 @@ global using InventoryManagementSystem.ViewModels.ProductViewModels;
 global using InventoryManagementSystem.ViewModels.AccountViewModels;
 global using InventoryManagementSystem.ViewModels.WarehouseViewModels;
 global using InventoryManagementSystem.ViewModels.WarehouseProductViewModels;
+global using InventoryManagementSystem.ViewModels.InventoryTransactionViewModels;
+
 

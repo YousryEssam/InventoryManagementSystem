@@ -1,4 +1,8 @@
-﻿namespace InventoryManagementSystem.Controllers
+﻿using InventoryManagementSystem.CQRS.Queries.InventoryTransactionQueries;
+using InventoryManagementSystem.ViewModels.InventoryTransactionViewModels;
+using InventoryManagementSystem.ViewModels.WarehouseViewModels;
+
+namespace InventoryManagementSystem.Controllers
 {
     [Authorize]
     [ApiController]
@@ -6,7 +10,6 @@
     public class InventoryTransactionController : BaseAPIController
     {
         public InventoryTransactionController(IMediator mediator) : base(mediator) { }
-
 
 
     }

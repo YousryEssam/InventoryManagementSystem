@@ -24,7 +24,6 @@
     <Folder Include="CQRS\Commands\ProductCommands\" />
     <Folder Include="CQRS\Orchestrators\InventoryTransactionOrchestrators\" />
     <Folder Include="CQRS\Orchestrators\WarehouseProductOrchestrators\" />
-    <Folder Include="CQRS\Queries\InventoryTransactionQueries\" />
   </ItemGroup>
 
 </Project>
