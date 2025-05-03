@@ -26,15 +26,22 @@
             return await SuccessfulRequest(products, "Successful Request");
         }
 
-        //[HttpPost("Add")]
-        //public async Task<ResponseViewModel<bool>> AddNew(NewProductDTO newProduct)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return await UnsuccessfulRequest<bool>(ErrorCode.ValidationError, "Validation Error");
-        //    }
+        [HttpPost("Add")]
+        public async Task<ResponseViewModel<bool>> AddNew(NewProductDTO newProduct)
+        {
+            if (!ModelState.IsValid)
+            {
+                return await UnsuccessfulRequest<bool>(ErrorCode.ValidationError, "Validation Error");
+            }
 
-        //}
+            bool successfulAdd = await _mediator.Send(new AddProductOrchestrator() { NewProductDTO = newProduct });
+
+            if (!successfulAdd)
+            {
+                return await UnsuccessfulRequest<bool>(ErrorCode.UnExceptedError, "Unsuccessful create new warehouse.");
+            }
+            return await SuccessfulRequest(true, "Successful create new warehouse.");
+        }
 
         [HttpPut("{id:int}")]
         public async Task<ResponseViewModel<bool>> Update(int id, UpdateProductDTO productDTO)

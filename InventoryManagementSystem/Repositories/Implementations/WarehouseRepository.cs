@@ -1,5 +1,4 @@
-﻿
-namespace InventoryManagementSystem.Repositories.Implementations
+﻿namespace InventoryManagementSystem.Repositories.Implementations
 {
     public class WarehouseRepository :GenericRepository<Warehouse> , IWarehouseRepository
     {
@@ -15,6 +14,19 @@ namespace InventoryManagementSystem.Repositories.Implementations
                 return false;
             }
             entity.IsDeleted = true;
+            return true;
+        }
+
+        public async Task<bool> UpdateWarehouseTotalProductQuantity(int id, int Quantity)
+        {
+            var warehouse = await _context.Warehouses
+                .Where(w => w.Id == id)
+                .FirstOrDefaultAsync();
+            if (warehouse == null)
+            {
+                return false;
+            }
+            warehouse.TotalProductQuantity += Quantity;
             return true;
         }
     }

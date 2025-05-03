@@ -8,6 +8,7 @@
         Task<IEnumerable<TModel>> GetAllAsync();
         Task<TModel?> GetByIdAsync(int id);
         Task SaveChangesAsync();
+        Task<IDbContextTransaction> BeginTransactionAsync();
         void Update(TModel entity);
     }
 }

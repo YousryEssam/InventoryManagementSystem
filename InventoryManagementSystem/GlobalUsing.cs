@@ -3,9 +3,11 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.EntityFrameworkCore.Storage;
 global using System.ComponentModel.DataAnnotations;
 global using System.ComponentModel.DataAnnotations.Schema;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 
 global using InventoryManagementSystem.Enums;
 global using InventoryManagementSystem.Models;
@@ -27,6 +29,7 @@ global using InventoryManagementSystem.CQRS.Commands.WarehouseCommands;
 global using InventoryManagementSystem.CQRS.Queries.WarehouseProductQueries;
 global using InventoryManagementSystem.CQRS.Commands.WarehouseProductCommands;
 global using InventoryManagementSystem.CQRS.Queries.InventoryTransactionQueries;
+global using InventoryManagementSystem.CQRS.Orchestrators.ProductOrchestrators;
 
 
 
@@ -36,4 +39,3 @@ global using InventoryManagementSystem.ViewModels.AccountViewModels;
 global using InventoryManagementSystem.ViewModels.WarehouseViewModels;
 global using InventoryManagementSystem.ViewModels.WarehouseProductViewModels;
 global using InventoryManagementSystem.ViewModels.InventoryTransactionViewModels;
-

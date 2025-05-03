@@ -50,5 +50,10 @@
         {
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return await _context.Database.BeginTransactionAsync();
+        }
     }
 }
